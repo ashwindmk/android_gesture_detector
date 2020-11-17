@@ -42,22 +42,27 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
                 Log.d(TAG,"Action was DOWN");
+                gestureDetector.onTouchEvent(event);
                 return true;
 
             case (MotionEvent.ACTION_MOVE):
                 Log.d(TAG,"Action was MOVE | onTouch: (x,y): (" + event.getX() + " , " + event.getY() + ")");
+                gestureDetector.onTouchEvent(event);
                 return true;
 
             case (MotionEvent.ACTION_UP):
                 Log.d(TAG,"Action was UP");
+                gestureDetector.onTouchEvent(event);
                 return true;
 
             case (MotionEvent.ACTION_CANCEL):
                 Log.d(TAG,"Action was CANCEL");
+                gestureDetector.onTouchEvent(event);
                 return true;
 
             case (MotionEvent.ACTION_OUTSIDE):
                 Log.d(TAG,"ACTION_OUTSIDE | Movement occurred outside bounds of current screen element");
+                gestureDetector.onTouchEvent(event);
                 return true;
 
             default:
@@ -67,12 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public boolean onDown(MotionEvent e) {
+        // Every time on ACTION_DOWN
         Log.w(TAG, "onDown");
         return false;
     }
 
     @Override
     public void onShowPress(MotionEvent e) {
+        // Press detected, this can be a scroll or a long-press
         Log.w(TAG, "onShowPress");
     }
 
@@ -95,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        // Swiped with quick force
         Log.w(TAG, "onFling");
         return false;
     }
@@ -102,18 +110,21 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     // For double-tap
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
+        // Not a double tap
         Log.w(TAG, "onSingleTapConfirmed");
         return false;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
+        // Called once per double tap
         Log.w(TAG, "onDoubleTap");
         return false;
     }
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent e) {
+        // Called when any touch event occurs on the second tap
         Log.w(TAG, "onDoubleTapEvent");
         return false;
     }
